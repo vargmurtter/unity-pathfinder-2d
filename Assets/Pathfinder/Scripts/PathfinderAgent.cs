@@ -12,7 +12,6 @@ namespace VargMurtter.Pathfinder
         [SerializeField] private Transform _target;
         [SerializeField] private float _agentSpeed = 5f;
         [SerializeField] private float _stopOnDistance = 2f;
-        [SerializeField] private float _pathRebuildFrenqucy = 0.5f;
 
         Vector2[,] grid;
 
@@ -25,16 +24,12 @@ namespace VargMurtter.Pathfinder
 
         List<Vector2> route;
 
-
-        float timer;
-
         private void Start()
         {
             ParseData();
 
             Init();
 
-            timer = _pathRebuildFrenqucy;
         }
 
         private void Init()
@@ -82,11 +77,6 @@ namespace VargMurtter.Pathfinder
         private void BuildRoute()
         {
 
-            foreach (Vector2 item in route)
-            {
-                print(item);
-            }
-
             if (Vector2.Distance(route[route.Count - 1], _target.position) > _stopOnDistance)
             {
                 bool breaked = false;
@@ -104,13 +94,6 @@ namespace VargMurtter.Pathfinder
                     }
 
                     if (breaked) break;
-                }
-            }
-            else
-            {
-                foreach (Vector2 item in route)
-                {
-                    print(item);
                 }
             }
         }
